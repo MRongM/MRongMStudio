@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+    width="512"
+    height="512"
+    viewBox="0 0 512 512"
+    role="img"
+    aria-labelledby="title desc">
+    <title id="title">MRongM developer icon</title>
+    <desc id="desc">A slim geometric R in the MRongM Warm Clay color system.</desc>
+
+    <rect width="512" height="512" fill="#2A1B17"/>
+
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="28">
+        <path
+            d="M168 384 V128"
+            stroke="#F59E66"/>
+        <path
+            d="M168 128 H246 C300 128 328 154 328 198 C328 242 300 268 246 268 H168"
+            stroke="#FFF3E8"/>
+        <path
+            d="M238 268 L330 384"
+            stroke="#FFF3E8"/>
+    </g>
+
+    <circle cx="330" cy="384" r="11" fill="#5EEAD4"/>
+</svg>

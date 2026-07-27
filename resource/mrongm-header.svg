@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+    width="4096"
+    height="2304"
+    viewBox="0 0 4096 2304"
+    role="img"
+    aria-labelledby="title desc">
+    <title id="title">MRongM developer page header</title>
+    <desc id="desc">MRongM independent software studio branding in the Warm Clay color system.</desc>
+
+    <rect width="4096" height="2304" fill="#2A1B17"/>
+
+    <!-- Quiet construction field -->
+    <g fill="none" stroke="#3A2822" stroke-width="4">
+        <path d="M2528 288 V2016"/>
+        <path d="M2784 288 V2016"/>
+        <path d="M3040 288 V2016"/>
+        <path d="M3296 288 V2016"/>
+        <path d="M3552 288 V2016"/>
+        <path d="M3808 288 V2016"/>
+        <path d="M2352 480 H3840"/>
+        <path d="M2352 736 H3840"/>
+        <path d="M2352 992 H3840"/>
+        <path d="M2352 1248 H3840"/>
+        <path d="M2352 1504 H3840"/>
+        <path d="M2352 1760 H3840"/>
+    </g>
+
+    <!-- Brand lockup -->
+    <g transform="translate(416 704)">
+        <rect width="560" height="560" rx="120" fill="#3A2822"/>
+        <g transform="translate(24 24)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="28">
+            <path
+                d="M168 384 V128"
+                stroke="#F59E66"/>
+            <path
+                d="M168 128 H246 C300 128 328 154 328 198 C328 242 300 268 246 268 H168"
+                stroke="#FFF3E8"/>
+            <path
+                d="M238 268 L330 384"
+                stroke="#FFF3E8"/>
+        </g>
+        <circle cx="354" cy="408" r="11" fill="#5EEAD4"/>
+    </g>
+
+    <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+        <text x="1136" y="812"
+            fill="#F59E66"
+            font-size="42"
+            font-weight="700"
+            letter-spacing="10">INDEPENDENT SOFTWARE STUDIO</text>
+        <text x="1116" y="1080"
+            fill="#FFF3E8"
+            font-size="264"
+            font-weight="700"
+            letter-spacing="-10">MRongM</text>
+        <text x="1136" y="1220"
+            fill="#E8D2C0"
+            font-size="68"
+            font-weight="500"
+            letter-spacing="1">Independent apps, thoughtfully built.</text>
+        <path d="M1136 1328 H2064" fill="none" stroke="#5A392D" stroke-width="8"/>
+        <circle cx="2092" cy="1328" r="14" fill="#5EEAD4"/>
+    </g>
+
+    <!-- Modular product system -->
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path
+            d="M2392 1440 C2608 1440 2592 848 2808 848 S3008 1680 3232 1680 S3416 1104 3656 1104"
+            stroke="#5A392D"
+            stroke-width="18"/>
+        <path
+            d="M2392 1440 C2608 1440 2592 848 2808 848"
+            stroke="#F59E66"
+            stroke-width="18"/>
+
+        <rect x="2664" y="704" width="288" height="288" rx="64"
+            fill="#3A2822" stroke="#F59E66" stroke-width="10"/>
+        <path d="M2744 848 H2872 M2808 784 V912"
+            stroke="#FFF3E8" stroke-width="20"/>
+
+        <rect x="3096" y="1544" width="272" height="272" rx="64"
+            fill="#3A2822" stroke="#5A392D" stroke-width="10"/>
+        <path d="M3176 1680 H3288"
+            stroke="#FFF3E8" stroke-width="20"/>
+        <circle cx="3232" cy="1680" r="26" fill="#F59E66" stroke="none"/>
+
+        <rect x="3520" y="968" width="272" height="272" rx="64"
+            fill="#3A2822" stroke="#5A392D" stroke-width="10"/>
+        <path d="M3596 1124 L3640 1168 L3724 1076"
+            stroke="#FFF3E8" stroke-width="20"/>
+
+        <circle cx="2392" cy="1440" r="22" fill="#5EEAD4" stroke="none"/>
+        <circle cx="2808" cy="848" r="18" fill="#F59E66" stroke="none"/>
+        <circle cx="3232" cy="1680" r="18" fill="#F59E66" stroke="none"/>
+        <circle cx="3656" cy="1104" r="18" fill="#FFF3E8" stroke="none"/>
+    </g>
+
+    <!-- Edge anchors -->
+    <g fill="#5A392D">
+        <circle cx="2528" cy="480" r="10"/>
+        <circle cx="3040" cy="480" r="10"/>
+        <circle cx="3552" cy="480" r="10"/>
+        <circle cx="2528" cy="1760" r="10"/>
+        <circle cx="3040" cy="1760" r="10"/>
+        <circle cx="3552" cy="1760" r="10"/>
+    </g>
+</svg>
