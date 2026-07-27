@@ -48,6 +48,8 @@ test('homepage has the required semantic sections and honest product state', asy
 
   assert.match(html, /AudioLoop/);
   assert.match(html, /Coming to Google Play/i);
+  assert.match(html, /MRongM Studio/);
+  assert.doesNotMatch(html, /MRongM(?! Studio)/);
   assert.match(html, /class="skip-link"/);
   assert.doesNotMatch(html, /<script\b/i);
   assert.doesNotMatch(html, /(?:src|href)=["']https?:\/\//i);
