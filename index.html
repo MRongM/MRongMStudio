@@ -5,31 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#2A1B17">
   <meta name="color-scheme" content="dark light">
-  <meta name="description" content="MRongM Studio builds lightweight, clear, and respectful independent apps.">
+  <meta name="description" content="MRongM Studio builds focused independent software, including Hobgoblin and AudioLoop." data-i18n-content="meta.description">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="MRongM Studio — Independent software studio">
-  <meta property="og:description" content="Useful software, tuned with care.">
+  <meta property="og:title" content="MRongM Studio — Independent apps and developer tools" data-i18n-content="meta.ogTitle">
+  <meta property="og:description" content="Independent apps and developer tools, thoughtfully built." data-i18n-content="meta.ogDescription">
   <meta property="og:image" content="resource/mrongm-header.png">
   <link rel="icon" href="resource/mrongm-developer-icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="resource/mrongm-developer-icon.png">
   <link rel="stylesheet" href="styles.css">
-  <title>MRongM Studio — Independent software studio</title>
+  <script type="module" src="scripts/i18n.mjs"></script>
+  <title data-i18n="meta.title">MRongM Studio — Independent apps and developer tools</title>
 </head>
 <body id="top">
-  <a class="skip-link" href="#main-content">Skip to content</a>
+  <a class="skip-link" href="#main-content" data-i18n="a11y.skip">Skip to content</a>
 
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="brand" href="#top" aria-label="MRongM Studio home">
+      <a class="brand" href="#top" aria-label="MRongM Studio home" data-i18n-aria-label="a11y.brandHome">
         <img class="brand__mark" src="resource/mrongm-developer-icon.svg" alt="" width="36" height="36">
         <span class="brand__name">MRongM Studio</span>
       </a>
 
-      <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#work">Work</a>
-        <a href="#principles">Principles</a>
-        <a href="#studio">Studio</a>
-      </nav>
+      <div class="site-header__tools">
+        <nav class="site-nav" aria-label="Primary navigation" data-i18n-aria-label="a11y.primaryNavigation">
+          <a href="#products" data-i18n="nav.products">Products</a>
+          <a href="#principles" data-i18n="nav.principles">Principles</a>
+          <a href="#studio" data-i18n="nav.studio">Studio</a>
+        </nav>
+
+        <div class="language-switcher" data-language-switcher role="group" aria-label="Language selection" data-i18n-aria-label="a11y.languageSelection" hidden>
+          <button type="button" data-language="en" lang="en" aria-label="Switch to English" aria-pressed="true">EN</button>
+          <button type="button" data-language="zh-CN" lang="zh-CN" aria-label="切换到简体中文" aria-pressed="false">中文</button>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -37,18 +45,18 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero__inner">
         <div class="hero__copy">
-          <p class="eyebrow hero__eyebrow">Independent software studio</p>
-          <h1 id="hero-title">Useful software,<br><span>tuned with care.</span></h1>
-          <p class="hero__intro">MRongM Studio builds focused apps that stay lightweight, feel clear, and respect the people using them.</p>
+          <p class="eyebrow hero__eyebrow" data-i18n="hero.eyebrow">Independent software studio</p>
+          <h1 id="hero-title"><span class="hero__title-lead" data-i18n="hero.titleLead">Useful software,</span><br><span class="hero__title-accent" data-i18n="hero.titleAccent">tuned with care.</span></h1>
+          <p class="hero__intro" data-i18n="hero.intro">MRongM Studio builds focused apps that stay lightweight, feel clear, and respect the people using them.</p>
 
           <div class="hero__actions">
-            <a class="button button--primary" href="#work">
-              <span>Explore AudioLoop</span>
+            <a class="button button--primary" href="#products">
+              <span data-i18n="hero.explore">Explore products</span>
               <svg aria-hidden="true" viewBox="0 0 20 20" width="18" height="18">
                 <path d="M4 10h11M11 6l4 4-4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
               </svg>
             </a>
-            <p class="studio-status"><span aria-hidden="true"></span>Building independently</p>
+            <p class="studio-status"><span class="status-dot" aria-hidden="true"></span><span data-i18n="hero.status">Building independently</span></p>
           </div>
         </div>
 
@@ -70,18 +78,18 @@
               <g transform="translate(217 61)">
                 <rect width="142" height="142" rx="32"/>
                 <path d="M43 71h56M71 43v56"/>
-                <text x="71" y="168" text-anchor="middle">BUILD</text>
+                <text x="71" y="168" text-anchor="middle" data-i18n="hero.build">BUILD</text>
               </g>
               <g transform="translate(464 483)">
                 <rect width="142" height="142" rx="32"/>
                 <path d="M43 71h56"/>
                 <circle cx="71" cy="71" r="12"/>
-                <text x="71" y="168" text-anchor="middle">TUNE</text>
+                <text x="71" y="168" text-anchor="middle" data-i18n="hero.tune">TUNE</text>
               </g>
               <g transform="translate(618 213)">
                 <rect width="142" height="142" rx="32"/>
                 <path d="m40 72 20 20 43-48"/>
-                <text x="71" y="168" text-anchor="middle">SHIP</text>
+                <text x="71" y="168" text-anchor="middle" data-i18n="hero.ship">SHIP</text>
               </g>
             </g>
           </svg>
@@ -91,84 +99,121 @@
       </div>
     </section>
 
-    <section class="product-section" id="work" aria-labelledby="work-title">
-      <div class="section-inner product-section__inner">
-        <div class="product-copy">
-          <p class="eyebrow">Current work</p>
-          <h2 id="work-title">Keep the part<br>worth hearing.</h2>
-          <p>AudioLoop is a focused listening utility built around one simple idea: replay what matters without adding more noise.</p>
-
-          <dl class="product-facts">
-            <div>
-              <dt>Platform</dt>
-              <dd>Android</dd>
-            </div>
-            <div>
-              <dt>Type</dt>
-              <dd>Focused utility</dd>
-            </div>
-            <div>
-              <dt>Status</dt>
-              <dd>In development</dd>
-            </div>
-          </dl>
+    <section class="products-section" id="products" aria-labelledby="products-title">
+      <div class="section-inner">
+        <div class="products-heading">
+          <div>
+            <p class="eyebrow" data-i18n="products.eyebrow">Released products</p>
+            <h2 id="products-title" data-i18n="products.title">Built for focused work.</h2>
+          </div>
+          <p data-i18n="products.intro">Two different tools, shaped by the same preference for clear workflows, local control, and software that stays out of the way.</p>
         </div>
 
-        <article class="product-card" aria-label="AudioLoop product preview">
-          <div class="product-card__header">
-            <span class="app-symbol" aria-hidden="true">
-              <svg viewBox="0 0 48 48" width="34" height="34">
-                <path d="M36 19a13 13 0 0 0-22-5l-3 3m0 0v-8m0 8h8M12 29a13 13 0 0 0 22 5l3-3m0 0v8m0-8h-8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-              </svg>
-            </span>
-            <p class="release-status"><span aria-hidden="true"></span>Coming to Google Play</p>
-          </div>
+        <div class="products-grid" aria-label="Released products" data-i18n-aria-label="products.listLabel">
+          <article class="product-panel product-panel--hobgoblin" aria-labelledby="hobgoblin-title">
+            <div class="product-panel__body">
+              <div class="product-identity">
+                <img class="product-icon product-icon--hobgoblin" src="resource/products/hobgoblin/icon.svg" alt="" width="64" height="64">
+                <span class="product-code" aria-hidden="true">HG / 02</span>
+              </div>
 
-          <div class="audio-mark" aria-hidden="true">
-            <span style="--level: 28%"></span>
-            <span style="--level: 52%"></span>
-            <span style="--level: 82%"></span>
-            <span style="--level: 58%"></span>
-            <span style="--level: 100%"></span>
-            <span style="--level: 68%"></span>
-            <span style="--level: 88%"></span>
-            <span style="--level: 46%"></span>
-            <span style="--level: 30%"></span>
-          </div>
+              <p class="product-status"><span class="status-dot" aria-hidden="true"></span><span data-i18n="hobgoblin.status">Latest release · v2.2.0</span></p>
+              <h3 id="hobgoblin-title">Hobgoblin</h3>
+              <p class="product-tagline" data-i18n="hobgoblin.tagline">AI workspaces that keep Git context intact.</p>
+              <p class="product-description" data-i18n="hobgoblin.description">Keep projects, worktrees, branches, terminals, and AI CLI sessions together in one understandable workspace—from desktop and web to Android.</p>
 
-          <div class="product-card__footer">
-            <div>
-              <p class="product-card__name">AudioLoop</p>
-              <p>Focused listening, without the clutter.</p>
+              <ul class="product-platforms" aria-label="Hobgoblin platforms" data-i18n-aria-label="hobgoblin.platformsLabel">
+                <li>macOS</li>
+                <li>Windows</li>
+                <li>Web</li>
+                <li>Android</li>
+              </ul>
+
+              <div class="product-actions">
+                <a class="product-link product-link--primary" href="https://github.com/MRongM/hobgoblin/releases/tag/v2.2.0">
+                  <span data-i18n="hobgoblin.releaseAction">View v2.2.0 release</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+                <a class="product-link" href="https://github.com/MRongM/hobgoblin">
+                  <span data-i18n="hobgoblin.sourceAction">Source code</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
             </div>
-            <span class="product-card__code" aria-hidden="true">AL / 01</span>
-          </div>
-        </article>
+
+            <div class="product-visual product-visual--hobgoblin" aria-hidden="true">
+              <div class="release-map">
+                <div class="release-map__header">
+                  <span>Hobgoblin</span>
+                  <span>v2.2.0</span>
+                </div>
+                <div class="release-map__path"></div>
+                <ol>
+                  <li><span data-i18n="hobgoblin.map.mobile">Mobile</span><strong>Android</strong></li>
+                  <li><span data-i18n="hobgoblin.map.sessions">Sessions</span><strong data-i18n="hobgoblin.map.sharedTmux">Shared tmux</strong></li>
+                  <li><span data-i18n="hobgoblin.map.notices">Notices</span><strong>Telegram</strong></li>
+                  <li><span>Git</span><strong data-i18n="hobgoblin.map.workspaces">Workspaces</strong></li>
+                </ol>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-panel product-panel--audioloop" aria-labelledby="audioloop-title">
+            <div class="product-panel__body">
+              <div class="product-identity">
+                <img class="product-icon" src="resource/products/audioloop/icon.png" alt="" width="64" height="64">
+                <span class="product-code" aria-hidden="true">AL / 01</span>
+              </div>
+
+              <p class="product-status"><span class="status-dot" aria-hidden="true"></span><span data-i18n="audioloop.status">Available on Google Play</span></p>
+              <h3 id="audioloop-title">AudioLoop</h3>
+              <p class="product-tagline" data-i18n="audioloop.tagline">Capture, convert, and keep audio organized.</p>
+              <p class="product-description" data-i18n="audioloop.description">Record high-fidelity audio, organize projects, convert PCM and WAV files, export results, and play recordings in one focused Android workflow.</p>
+
+              <ul class="product-platforms" aria-label="AudioLoop platforms" data-i18n-aria-label="audioloop.platformsLabel">
+                <li>Android</li>
+              </ul>
+
+              <div class="product-actions">
+                <a class="product-link product-link--primary" href="https://play.google.com/store/apps/details?id=com.mrongm.audioloop">
+                  <span data-i18n="audioloop.playAction">Get it on Google Play</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+
+            <figure class="product-visual product-visual--audioloop">
+              <div class="audioloop-orbit" aria-hidden="true"></div>
+              <img class="audioloop-screen" src="resource/products/audioloop/projects.png" alt="AudioLoop Projects screen on Android" data-i18n-alt="audioloop.screenAlt" width="1080" height="1920" loading="lazy">
+              <figcaption data-i18n="audioloop.caption">Projects keep recordings, conversions, and exports in one place.</figcaption>
+            </figure>
+          </article>
+        </div>
       </div>
     </section>
 
     <section class="principles-section" id="principles" aria-labelledby="principles-title">
       <div class="section-inner">
         <div class="section-heading">
-          <p class="eyebrow eyebrow--dark">How we build</p>
-          <h2 id="principles-title">Less software between you and the thing you came to do.</h2>
+          <p class="eyebrow eyebrow--dark" data-i18n="principles.eyebrow">How we build</p>
+          <h2 id="principles-title" data-i18n="principles.title">Less software between you and the thing you came to do.</h2>
         </div>
 
         <ol class="principles-list">
           <li>
-            <p class="principle-label"><span>Lightweight</span><span aria-hidden="true">A</span></p>
-            <h3>Small by choice.</h3>
-            <p>No feature earns its place by sounding impressive. The product stays focused on the job it exists to do.</p>
+            <p class="principle-label"><span data-i18n="principles.lightweight.label">Lightweight</span><span aria-hidden="true">A</span></p>
+            <h3 data-i18n="principles.lightweight.title">Small by choice.</h3>
+            <p data-i18n="principles.lightweight.body">No feature earns its place by sounding impressive. Each product stays focused on the job it exists to do.</p>
           </li>
           <li>
-            <p class="principle-label"><span>Clear</span><span aria-hidden="true">B</span></p>
-            <h3>Obvious in use.</h3>
-            <p>Interfaces explain themselves through structure, language, and familiar actions—not instructions.</p>
+            <p class="principle-label"><span data-i18n="principles.clear.label">Clear</span><span aria-hidden="true">B</span></p>
+            <h3 data-i18n="principles.clear.title">Obvious in use.</h3>
+            <p data-i18n="principles.clear.body">Interfaces explain themselves through structure, language, and familiar actions—not instructions.</p>
           </li>
           <li>
-            <p class="principle-label"><span>Respectful</span><span aria-hidden="true">C</span></p>
-            <h3>Your attention is yours.</h3>
-            <p>No dark patterns, manufactured urgency, or noisy defaults. Useful software knows when to step aside.</p>
+            <p class="principle-label"><span data-i18n="principles.respectful.label">Respectful</span><span aria-hidden="true">C</span></p>
+            <h3 data-i18n="principles.respectful.title">Your attention is yours.</h3>
+            <p data-i18n="principles.respectful.body">No dark patterns, manufactured urgency, or noisy defaults. Useful software knows when to step aside.</p>
           </li>
         </ol>
       </div>
@@ -177,13 +222,13 @@
     <section class="studio-section" id="studio" aria-labelledby="studio-title">
       <div class="section-inner studio-section__inner">
         <div class="studio-copy">
-          <p class="eyebrow">The studio</p>
-          <h2 id="studio-title">Independent<br>on purpose.</h2>
-          <p>MRongM Studio is a small software studio taking full responsibility for the details—from the first problem to the final interaction.</p>
+          <p class="eyebrow" data-i18n="studio.eyebrow">The studio</p>
+          <h2 id="studio-title"><span data-i18n="studio.titleLead">Independent</span><br><span data-i18n="studio.titleAccent">on purpose.</span></h2>
+          <p data-i18n="studio.body">MRongM Studio is a small software studio taking full responsibility for the details—from the first problem to the final interaction.</p>
         </div>
 
         <blockquote>
-          <p>“Thoughtfully built” means fewer assumptions, shorter paths, and software that knows when to get out of the way.</p>
+          <p data-i18n="studio.quote">“Thoughtfully built” means fewer assumptions, shorter paths, and software that knows when to get out of the way.</p>
         </blockquote>
       </div>
     </section>
@@ -193,11 +238,11 @@
     <div class="site-footer__inner">
       <div>
         <p class="site-footer__brand">MRongM Studio</p>
-        <p>Independent apps, thoughtfully built.</p>
+        <p data-i18n="footer.tagline">Independent apps, thoughtfully built.</p>
       </div>
       <div class="site-footer__meta">
-        <p>© 2026 MRongM Studio</p>
-        <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+        <p data-i18n="footer.copyright">© 2026 MRongM Studio</p>
+        <a href="#top"><span data-i18n="footer.backToTop">Back to top</span> <span aria-hidden="true">↑</span></a>
       </div>
     </div>
   </footer>
