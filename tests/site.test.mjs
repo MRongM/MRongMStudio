@@ -16,6 +16,7 @@ const requiredProductResources = [
   'resource/products/hobgoblin/icon.svg',
   'resource/products/audioloop/icon.png',
   'resource/products/audioloop/projects.png',
+  'apps/flowlane/assets/flowlane.png',
 ];
 
 const allowedExternalLinks = new Set([
@@ -73,6 +74,8 @@ test('homepage presents the released product portfolio', async () => {
   assert.match(html, /Hobgoblin/);
   assert.match(html, /v2\.2\.0/);
   assert.match(html, /AudioLoop/);
+  assert.match(html, /FlowLane/);
+  assert.match(html, /href=["']apps\/flowlane\/["']/);
   assert.match(html, /Available on Google Play/i);
   assert.doesNotMatch(html, /Coming to Google Play/i);
   assert.match(
@@ -91,6 +94,23 @@ test('homepage presents the released product portfolio', async () => {
   ].map((match) => match[1]);
 
   assert.deepEqual(new Set(externalLinks), allowedExternalLinks);
+});
+
+test('FlowLane product page remains independent of the private repository', async () => {
+  const page = await readFile('apps/flowlane/index.html', 'utf8');
+  const catalog = JSON.parse(await readFile('apps/flowlane/locales.json', 'utf8'));
+  assert.match(page, /FlowLane/);
+  assert.match(page, /https:\/\/mrongm\.328064\.xyz\/apps\/flowlane\//);
+  assert.doesNotMatch(page, /github\.com\/MRongM\/FlowLane/i);
+  assert.equal(Object.keys(catalog).length, 11);
+  assert.match(page, /href=["']\.\.\/\.\.\/["']/);
+  const keys = [...page.matchAll(/data-i18n(?:-(?:aria|alt))?=["']([^"']+)["']/g)].map((match) => match[1]);
+  for (const [language, strings] of Object.entries(catalog)) {
+    for (const key of keys) assert.equal(typeof strings[key], 'string', `${language} is missing ${key}`);
+  }
+  for (const asset of ['app.mjs', 'style.css', 'assets/flowlane.png', 'assets/flowlane-ui-en.png']) {
+    assert.equal(await canAccess(`apps/flowlane/${asset}`), true, `${asset} is missing`);
+  }
 });
 
 test('homepage exposes a manual language selector', async () => {

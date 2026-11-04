@@ -3,7 +3,7 @@ export const SUPPORTED_LANGUAGES = Object.freeze(['en', 'zh-CN']);
 export const STORAGE_KEY = 'mrongm.studio.language';
 
 export const zhCN = Object.freeze({
-  'meta.description': 'MRongM Studio 专注打造轻量、清晰的独立软件，包括 Hobgoblin 与 AudioLoop。',
+  'meta.description': 'MRongM Studio 专注打造轻量、清晰的独立软件，包括 FlowLane、Hobgoblin 与 AudioLoop。',
   'meta.ogTitle': 'MRongM Studio — 独立应用与开发者工具',
   'meta.ogDescription': '用心打磨的独立应用与开发者工具。',
   'meta.title': 'MRongM Studio — 独立应用与开发者工具',
@@ -25,7 +25,7 @@ export const zhCN = Object.freeze({
   'hero.ship': '发布',
   'products.eyebrow': '已发布产品',
   'products.title': '为专注工作而生。',
-  'products.intro': '两款不同的工具，共享同一种取舍：流程清晰、控制权在本地，软件不打扰你正在做的事。',
+  'products.intro': '不同的工具，共享同一种取舍：流程清晰、控制权在本地，软件不打扰你正在做的事。',
   'products.listLabel': '已发布产品',
   'hobgoblin.status': '最新版本 · v2.2.0',
   'hobgoblin.tagline': '让 Git 上下文始终完整的 AI 工作空间。',
@@ -45,6 +45,13 @@ export const zhCN = Object.freeze({
   'audioloop.playAction': '前往 Google Play',
   'audioloop.screenAlt': 'Android 上的 AudioLoop 项目页面',
   'audioloop.caption': '项目集中管理录音、转换结果与导出文件。',
+  'flowlane.status': '原生 macOS 工具',
+  'flowlane.tagline': '为每个应用选择连接方式。',
+  'flowlane.description': '将已有 SOCKS5 或 HTTP CONNECT 代理分配给所选应用；未匹配的流量直连。',
+  'flowlane.platformsLabel': 'FlowLane 支持的平台',
+  'flowlane.action': '了解 FlowLane',
+  'flowlane.screenAlt': 'macOS 上的 FlowLane 应用规则页面',
+  'flowlane.caption': '选择需要使用的应用和连接方式。',
   'principles.eyebrow': '我们的构建方式',
   'principles.title': '少一点软件阻隔，多一点专注于你真正要做的事。',
   'principles.lightweight.label': '轻量',
