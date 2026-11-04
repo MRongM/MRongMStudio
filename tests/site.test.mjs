@@ -96,12 +96,14 @@ test('homepage presents the released product portfolio', async () => {
   assert.deepEqual(new Set(externalLinks), allowedExternalLinks);
 });
 
-test('FlowLane product page remains independent of the private repository', async () => {
+test('FlowLane product page preserves public releases and source links', async () => {
   const page = await readFile('apps/flowlane/index.html', 'utf8');
   const catalog = JSON.parse(await readFile('apps/flowlane/locales.json', 'utf8'));
   assert.match(page, /FlowLane/);
   assert.match(page, /https:\/\/mrongm\.328064\.xyz\/apps\/flowlane\//);
-  assert.doesNotMatch(page, /github\.com\/MRongM\/FlowLane/i);
+  assert.match(page, /https:\/\/github\.com\/MRongM\/FlowLane\/releases\/latest\/download\/FlowLane-macos-arm64\.zip/);
+  assert.match(page, /https:\/\/github\.com\/MRongM\/FlowLane\/releases\/latest\/download\/FlowLane-macos-x86_64\.zip/);
+  assert.match(page, /https:\/\/github\.com\/MRongM\/FlowLane/);
   assert.equal(Object.keys(catalog).length, 11);
   assert.match(page, /href=["']\.\.\/\.\.\/["']/);
   const keys = [...page.matchAll(/data-i18n(?:-(?:aria|alt))?=["']([^"']+)["']/g)].map((match) => match[1]);

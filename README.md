@@ -6,7 +6,7 @@ MRongM 独立软件工作室的英文 / 简体中文官方网站。项目使用�
 
 - **Hobgoblin v2.2.0**：面向 AI CLI 与 Git worktree 工作流的开发工作区，覆盖 macOS、Windows、Web/server mode 与 Android。
 - **AudioLoop**：面向录音、PCM/WAV 转换、项目管理、导出和播放的 Android 工具，已在 Google Play 发布。
-- **FlowLane**：为所选 macOS 应用分配已有 SOCKS5 / HTTP CONNECT 代理的工具。独立介绍页位于 `apps/flowlane/`，支持 11 种语言，说明直连、DNS、UDP 与 TUN 的验证边界。该页面暂不提供公开安装包下载。
+- **FlowLane**：为所选 macOS 应用分配已有 SOCKS5 / HTTP CONNECT 代理的工具。独立介绍页位于 `apps/flowlane/`，支持 11 种语言，说明直连、DNS、UDP 与 TUN 的验证边界，并链接现有公开发布版本。
 
 ## 本地预览
 
@@ -35,7 +35,7 @@ node --test "tests/site.test.mjs"
 - `scripts/i18n.mjs`：简体中文词典、手动切换、语言状态与安全的本地偏好存储。
 - `resource/`：原始 Google Play 开发者页面素材。
 - `resource/products/`：从对应产品发布版本提取的官网产品资源。
-- `apps/flowlane/`：迁入的 FlowLane 独立静态页面与公开展示素材，不依赖其源码仓库。FlowLane 网络能力或限制改变时，应同步更新此页面及其翻译。
+- `apps/flowlane/`：迁入的 FlowLane 独立静态页面与公开展示素材；下载和源码链接当前指向 FlowLane 公共仓库。仓库可见性或 FlowLane 网络能力、限制改变时，应同步核对链接及页面翻译。
 - `tests/`：不依赖第三方包的网站契约测试。
 - `docs/superpowers/`：设计说明与实施计划。
 
