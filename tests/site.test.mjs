@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { access, readFile } from 'node:fs/promises';
+import { access, readFile, stat } from 'node:fs/promises';
 import { constants } from 'node:fs';
+import { dirname, resolve } from 'node:path';
 
 const requiredResources = [
   'README.md',
@@ -17,13 +18,11 @@ const requiredProductResources = [
   'resource/products/audioloop/icon.png',
   'resource/products/audioloop/projects.png',
   'apps/flowlane/assets/flowlane.png',
+  'resource/products/one-tap-shutdown/icon.svg',
+  'resource/products/toybox-battle/icon.png',
+  'resource/products/cycleledger/icon.png',
+  'resource/products/timekeeper/icon.svg',
 ];
-
-const allowedExternalLinks = new Set([
-  'https://github.com/MRongM/hobgoblin',
-  'https://github.com/MRongM/hobgoblin/releases/tag/v2.2.0',
-  'https://play.google.com/store/apps/details?id=com.mrongm.audioloop',
-]);
 
 const languageModulePath = '../scripts/i18n.mjs';
 
@@ -72,12 +71,11 @@ test('homepage presents the released product portfolio', async () => {
   }
 
   assert.match(html, /Hobgoblin/);
-  assert.match(html, /v2\.2\.0/);
   assert.match(html, /AudioLoop/);
   assert.match(html, /FlowLane/);
-  assert.match(html, /href=["']apps\/flowlane\/["']/);
-  assert.match(html, /Available on Google Play/i);
-  assert.doesNotMatch(html, /Coming to Google Play/i);
+  for (const app of ['hobgoblin', 'audioloop', 'flowlane', 'one-tap-shutdown', 'toybox-battle', 'cycleledger', 'timekeeper']) {
+    assert.match(html, new RegExp(`href=["']apps/${app}/["']`));
+  }
   assert.match(
     html,
     /<span class="brand__name">MRongM Studio<\/span>/,
@@ -85,7 +83,7 @@ test('homepage presents the released product portfolio', async () => {
   assert.match(html, /class="skip-link"/);
   assert.doesNotMatch(html, /(?:src|srcset)=["']https?:\/\//i);
 
-  for (const resource of requiredProductResources) {
+  for (const resource of requiredProductResources.filter((item) => !item.endsWith('projects.png'))) {
     assert.match(html, new RegExp(resource.replaceAll('/', '\\/')));
   }
 
@@ -93,7 +91,60 @@ test('homepage presents the released product portfolio', async () => {
     ...html.matchAll(/href=["'](https?:\/\/[^"']+)["']/g),
   ].map((match) => match[1]);
 
-  assert.deepEqual(new Set(externalLinks), allowedExternalLinks);
+  assert.deepEqual(externalLinks, []);
+});
+
+test('additional product pages have accessible names and do not expose private source', async () => {
+  for (const [slug, name] of [
+    ['one-tap-shutdown', 'One-tap Shutdown'], ['toybox-battle', 'Toybox Battle'],
+    ['cycleledger', 'CycleLedger'], ['timekeeper', 'Timekeeper'],
+  ]) {
+    const html = await readFile(`apps/${slug}/index.html`, 'utf8');
+    assert.match(html, new RegExp(`<h1[^>]*>${name}</h1>`));
+    assert.match(html, /href=["']\.\.\/\.\.\/["']/);
+    assert.match(html, /data-language-switcher[^>]*\bhidden\b/);
+    assert.doesNotMatch(html, /github\.com\/MRongM\/(?:android-one-tap-shutdown|toybox|cycle-ledger|timekeeper)/i);
+  }
+  const timekeeper = await readFile('apps/timekeeper/index.html', 'utf8');
+  assert.match(timekeeper, /Hourly Time/);
+});
+
+test('all product pages reference existing local files and anchors', async () => {
+  const pages = ['index.html', ...['hobgoblin', 'audioloop', 'flowlane', 'one-tap-shutdown', 'toybox-battle', 'cycleledger', 'timekeeper'].map((slug) => `apps/${slug}/index.html`)];
+  for (const file of pages) {
+    const html = await readFile(file, 'utf8');
+    const ids = [...html.matchAll(/\bid=["']([^"']+)["']/g)].map((match) => match[1]);
+    assert.equal(ids.length, new Set(ids).size, `${file} contains duplicate IDs`);
+    for (const match of html.matchAll(/(?:href|src)=["']([^"']+)["']/g)) {
+      const target = match[1];
+      if (/^(?:https?:|mailto:|data:)/i.test(target)) continue;
+      const [pathname, fragment] = target.split('#', 2);
+      if (!pathname) {
+        if (fragment) assert.ok(ids.includes(fragment), `${file}: missing anchor ${target}`);
+        continue;
+      }
+      const destination = resolve(dirname(file), decodeURIComponent(pathname));
+      assert.ok(await canAccess(destination), `${file}: missing ${target}`);
+      if (fragment) {
+        const linked = await readFile((await stat(destination)).isDirectory() ? `${destination}/index.html` : destination, 'utf8');
+        assert.match(linked, new RegExp(`\\bid=["']${fragment}["']`));
+      }
+    }
+  }
+});
+
+test('each Studio product has an independent page with its official links', async () => {
+  const hobgoblin = await readFile('apps/hobgoblin/index.html', 'utf8');
+  const audioloop = await readFile('apps/audioloop/index.html', 'utf8');
+  for (const [html, name] of [[hobgoblin, 'Hobgoblin'], [audioloop, 'AudioLoop']]) {
+    assert.match(html, new RegExp(`<h1[^>]*>${name}</h1>`));
+    assert.match(html, /href=["']\.\.\/\.\.\/["']/);
+    assert.match(html, /data-language-switcher[^>]*\bhidden\b/);
+  }
+  assert.match(hobgoblin, /https:\/\/github\.com\/MRongM\/hobgoblin\/releases\/tag\/v2\.2\.0/);
+  assert.match(hobgoblin, /https:\/\/github\.com\/MRongM\/hobgoblin["']/);
+  assert.match(audioloop, /https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.mrongm\.audioloop/);
+  assert.match(audioloop, /resource\/products\/audioloop\/projects\.png/);
 });
 
 test('FlowLane product page preserves public releases and source links', async () => {
@@ -139,7 +190,7 @@ test('homepage exposes a manual language selector', async () => {
 });
 
 test('language module covers the page and fails safely', async () => {
-  const html = await readFile('index.html', 'utf8');
+  const html = (await Promise.all(['index.html', ...['hobgoblin', 'audioloop', 'one-tap-shutdown', 'toybox-battle', 'cycleledger', 'timekeeper'].map((slug) => `apps/${slug}/index.html`)].map((path) => readFile(path, 'utf8')))).join('\n');
   const {
     DEFAULT_LANGUAGE,
     STORAGE_KEY,
@@ -227,7 +278,7 @@ test('stylesheet preserves brand tokens and accessibility contracts', async () =
     assert.match(css, new RegExp(escapedSelector + '\\s*\\{'));
   }
 
-  assert.match(css, /grid-template-columns:\s*repeat\(2,/);
+  assert.match(css, /grid-template-columns:\s*repeat\(3,/);
   assert.match(
     css,
     /@media\s*\(max-width:\s*48rem\)[\s\S]*?\.products-grid\s*\{[^}]*grid-template-columns:\s*1fr;/,
