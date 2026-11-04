@@ -22,6 +22,7 @@ const requiredProductResources = [
   'resource/products/toybox-battle/icon.png',
   'resource/products/cycleledger/icon.png',
   'resource/products/timekeeper/icon.svg',
+  'resource/products/critter-merge/icon.png',
 ];
 
 const languageModulePath = '../scripts/i18n.mjs';
@@ -73,7 +74,7 @@ test('homepage presents the released product portfolio', async () => {
   assert.match(html, /Hobgoblin/);
   assert.match(html, /AudioLoop/);
   assert.match(html, /FlowLane/);
-  for (const app of ['hobgoblin', 'audioloop', 'flowlane', 'one-tap-shutdown', 'toybox-battle', 'cycleledger', 'timekeeper']) {
+  for (const app of ['hobgoblin', 'audioloop', 'flowlane', 'one-tap-shutdown', 'toybox-battle', 'cycleledger', 'timekeeper', 'critter-merge']) {
     assert.match(html, new RegExp(`href=["']apps/${app}/["']`));
   }
   assert.match(
@@ -109,8 +110,17 @@ test('additional product pages have accessible names and do not expose private s
   assert.match(timekeeper, /Hourly Time/);
 });
 
+test('Critter Merge page uses the public game listing and privacy policy', async () => {
+  const page = await readFile('apps/critter-merge/index.html', 'utf8');
+  assert.match(page, /<h1[^>]*>Critter Merge<\/h1>/);
+  assert.match(page, /https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.mrongm\.mergelong/);
+  assert.match(page, /https:\/\/privacy-policy\.328064\.xyz\/critter-merge\//);
+  assert.doesNotMatch(page, /github\.com\/MRongM\/MergeLong/i);
+  assert.ok(await canAccess('resource/products/critter-merge/feature.png'));
+});
+
 test('all product pages reference existing local files and anchors', async () => {
-  const pages = ['index.html', ...['hobgoblin', 'audioloop', 'flowlane', 'one-tap-shutdown', 'toybox-battle', 'cycleledger', 'timekeeper'].map((slug) => `apps/${slug}/index.html`)];
+  const pages = ['index.html', ...['hobgoblin', 'audioloop', 'flowlane', 'one-tap-shutdown', 'toybox-battle', 'cycleledger', 'timekeeper', 'critter-merge'].map((slug) => `apps/${slug}/index.html`)];
   for (const file of pages) {
     const html = await readFile(file, 'utf8');
     const ids = [...html.matchAll(/\bid=["']([^"']+)["']/g)].map((match) => match[1]);
@@ -190,7 +200,7 @@ test('homepage exposes a manual language selector', async () => {
 });
 
 test('language module covers the page and fails safely', async () => {
-  const html = (await Promise.all(['index.html', ...['hobgoblin', 'audioloop', 'one-tap-shutdown', 'toybox-battle', 'cycleledger', 'timekeeper'].map((slug) => `apps/${slug}/index.html`)].map((path) => readFile(path, 'utf8')))).join('\n');
+  const html = (await Promise.all(['index.html', ...['hobgoblin', 'audioloop', 'one-tap-shutdown', 'toybox-battle', 'cycleledger', 'timekeeper', 'critter-merge'].map((slug) => `apps/${slug}/index.html`)].map((path) => readFile(path, 'utf8')))).join('\n');
   const {
     DEFAULT_LANGUAGE,
     STORAGE_KEY,
