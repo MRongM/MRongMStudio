@@ -119,6 +119,16 @@ test('Critter Merge page uses the public game listing and privacy policy', async
   assert.ok(await canAccess('resource/products/critter-merge/feature.png'));
 });
 
+test('homepage makes Critter Merge easy to find in English and Chinese', async () => {
+  const html = await readFile('index.html', 'utf8');
+  const cards = [...html.matchAll(/<article\b[^>]*class=["'][^"']*product-card[^"']*["'][^>]*aria-labelledby=["']([^"']+)["']/g)].map((match) => match[1]);
+  assert.equal(cards[0], 'critter-merge-title');
+  assert.match(html, /<h3\b[^>]*id=["']critter-merge-title["'][^>]*data-i18n=["']critter\.name["'][^>]*>Critter Merge<\/h3>/);
+  assert.match(html, /MergeLong/);
+  const { zhCN } = await import(languageModulePath);
+  assert.equal(zhCN['critter.name'], '萌兽合合乐');
+});
+
 test('all product pages reference existing local files and anchors', async () => {
   const pages = ['index.html', ...['hobgoblin', 'audioloop', 'flowlane', 'one-tap-shutdown', 'toybox-battle', 'cycleledger', 'timekeeper', 'critter-merge'].map((slug) => `apps/${slug}/index.html`)];
   for (const file of pages) {

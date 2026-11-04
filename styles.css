@@ -611,6 +611,13 @@ button:focus-visible {
   line-height: 0.92;
 }
 
+.product-alias {
+  margin-top: 0.4rem;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  line-height: 1.25;
+}
+
 .product-tagline {
   max-width: 21ch;
   margin-top: 1rem;

@@ -88,6 +88,7 @@ export const zhCN = Object.freeze({
   'timekeeper.note': 'Google Play 中的名称为 Hourly Time。准时报时需要 Android 闹钟权限，也受设备设置影响。',
   'timekeeper.open': '前往 Google Play',
   'critter.status': '萌兽合成游戏',
+  'critter.name': '萌兽合合乐',
   'critter.tagline': '小小萌兽，合出大惊喜。',
   'critter.explore': '了解萌兽合合乐',
   'critter.description': '放下圆滚滚的森林伙伴，让相同的萌兽碰撞合成，发现新的动物。',
